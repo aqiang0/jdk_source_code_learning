@@ -11,14 +11,9 @@ import java.util.HashMap;
  */
 public class SimpleTest {
     public static void main(String[] args) {
-        ArrayList<Object> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>(3);
         list.add(1);
-        list.add(1);
-        list.add(1);
+        list.add(2,2);
         System.out.println(list);
-
-        HashMap<Object, Object> map = new HashMap<>();
-        map.put("a","aaa");
-        System.out.println(map);
     }
 }
