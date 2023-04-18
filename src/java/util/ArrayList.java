@@ -111,9 +111,9 @@ public class ArrayList<E> extends AbstractList<E>
 
     // 默认容量
     private static final int DEFAULT_CAPACITY = 10;
-    // 空数组，当通过构造函数 ArrayList(int initialCapacity)构造列表时，elemantData 指向该空数组
+    // 空数组EE，当通过构造函数 ArrayList(int initialCapacity)构造列表时，elemantData 指向该空数组
     private static final Object[] EMPTY_ELEMENTDATA = {};
-    // 空数组 当通过无参构造函数 ArrayList()构造列表时，elemantData 指向该空数组
+    // 空数组DEE 当通过无参构造函数 ArrayList()构造列表时，elemantData 指向该空数组
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
 
     /**
@@ -181,7 +181,7 @@ public class ArrayList<E> extends AbstractList<E>
                 elementData = Arrays.copyOf(a, size, Object[].class);
             }
         } else {
-            // replace with empty array.
+            // 元素大小为0，给到空数组EE
             elementData = EMPTY_ELEMENTDATA;
         }
     }
@@ -191,6 +191,7 @@ public class ArrayList<E> extends AbstractList<E>
      * list's current size.  An application can use this operation to minimize
      * the storage of an <tt>ArrayList</tt> instance.
      */
+    // 将此ArrayList实例的容量修剪为列表的当前大小。应用程序可以使用此操作来最小化ArrayList实例的存储
     public void trimToSize() {
         modCount++;
         if (size < elementData.length) {
@@ -219,7 +220,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     private static int calculateCapacity(Object[] elementData, int minCapacity) {
-        // 无参构造给默认容量10
+        // 无参构造给默认容量10，如果是首次添加，minCapacity肯定等于1
         if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
             return Math.max(DEFAULT_CAPACITY, minCapacity);
         }
@@ -227,14 +228,12 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     private void ensureCapacityInternal(int minCapacity) {
-        // 扩容
+        // 先计算实际需要容量，再扩容
         ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
     }
 
     private void ensureExplicitCapacity(int minCapacity) {
         modCount++;
-
-        // overflow-conscious code
         if (minCapacity - elementData.length > 0)
             // 扩容
             grow(minCapacity);
@@ -276,7 +275,7 @@ public class ArrayList<E> extends AbstractList<E>
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
             throw new OutOfMemoryError();
-        // 比最大数组大小还大，去int的最大值
+        // 比最大数组大小还大，取int的最大值
         return (minCapacity > MAX_ARRAY_SIZE) ?
             Integer.MAX_VALUE :
             MAX_ARRAY_SIZE;

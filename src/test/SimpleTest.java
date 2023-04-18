@@ -3,6 +3,7 @@ package test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * @author aqian
@@ -11,9 +12,10 @@ import java.util.HashMap;
  */
 public class SimpleTest {
     public static void main(String[] args) {
-        ArrayList<Object> list = new ArrayList<>(3);
+        LinkedList<Integer> list = new LinkedList<>();
         list.add(1);
-        list.add(2,2);
-        System.out.println(list);
+        list.add(2);
+        ArrayList<Object> objects = new ArrayList<>(list);
+        System.out.println(objects);
     }
 }
